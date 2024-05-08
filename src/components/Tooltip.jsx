@@ -14,13 +14,13 @@ function Tooltip({
   const positionOuterClasses = (position) => {
     switch (position) {
       case 'right':
-        return 'left-full top-1/2 -translate-y-1/2';
+        return 'start-full top-1/2 -translate-y-1/2';
       case 'left':
-        return 'right-full top-1/2 -translate-y-1/2';
+        return 'end-full top-1/2 -translate-y-1/2';
       case 'bottom':
-        return 'top-full left-1/2 -translate-x-1/2';
+        return 'top-full start-1/2 -translate-x-1/2';
       default:
-        return 'bottom-full left-1/2 -translate-x-1/2';
+        return 'bottom-full start-1/2 -translate-x-1/2';
     }
   }
 
@@ -51,9 +51,9 @@ function Tooltip({
   const positionInnerClasses = (position) => {
     switch (position) {
       case 'right':
-        return 'ml-2';
+        return 'ms-2';
       case 'left':
-        return 'mr-2';
+        return 'me-2';
       case 'bottom':
         return 'mt-2';
       default:
