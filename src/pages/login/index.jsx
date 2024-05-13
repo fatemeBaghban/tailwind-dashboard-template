@@ -6,17 +6,19 @@ const Login = () => {
   const [phone, setPhone] = useState();
   const [captcha, setCaptcha] = useState();
   const [imageCaptcha, setImageCaptcha] = useState();
-  const [otp, setOtp] = useState();
+  const [password, setPassword] = useState();
   const [step, setStep] = useState(1);
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const router = useNavigate();
 
   const { data, error, isLoading } = useSWR(
-    `/?phone=${phone}&otp=${otp}`,
+    `/?phone=${phone}&password=${password}`,
     fetcher
   );
 
   const handleSubmit = () => {
+    console.log("kkkjk");
+    router("/");
     // if (step == 1) {
     //   axios
     //     .post(OnRun + "", {
@@ -84,20 +86,20 @@ const Login = () => {
                   />
                 </div>
               </div>
-              {step === 1 ? (
+              {!step === 1 ? (
                 <div>
                   <div className="flex items-center justify-between">
                     <label className="block text-sm font-medium leading-6 text-gray-900">
                       کپچا
                     </label>
                     {/* <div className="text-sm">
-                        <a
-                          href="/"
-                          className="font-semibold text-indigo-600 hover:text-indigo-500"
-                        >
-                          فراموشی رمز
-                        </a>
-                      </div> */}
+                      <a
+                        href="/"
+                        className="font-semibold text-indigo-600 hover:text-indigo-500"
+                      >
+                        فراموشی رمز
+                      </a>
+                    </div> */}
                   </div>
                   <div>
                     {imageCaptcha ? (
@@ -132,15 +134,25 @@ const Login = () => {
                 //   />
                 // </div>
                 <div>
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
-                    کد تایید{" "}
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                      رمزعبور
+                    </label>
+                    <div className="text-sm">
+                      <a
+                        href="/"
+                        className="font-semibold text-indigo-600 hover:text-indigo-500"
+                      >
+                        فراموشی رمز
+                      </a>
+                    </div>
+                  </div>
                   <div className="mt-2">
                     <input
-                      value={otp}
-                      onChange={(e) => setOtp(e.target.value)}
-                      maxLength={5}
+                      name="password"
                       type="text"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                       className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -150,7 +162,7 @@ const Login = () => {
               <div>
                 <button
                   type="submit"
-                  onSubmit={handleSubmit}
+                  onClick={handleSubmit}
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   ورود

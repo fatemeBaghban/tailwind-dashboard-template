@@ -66,12 +66,12 @@ function Header({ sidebarOpen, setSidebarOpen }) {
               <SearchModal id="search-modal" searchId="search" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} />
             </div> */}
             <div className="flex flex-row gap-x-3">
-            <Notifications align="left" />
-            <Help align="right" />
-            <ThemeToggle />
-            {/*  Divider */}
-            <hr className="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
-            <UserMenu align="right" />
+              <Notifications align="left" />
+              <Help align="right" />
+              <ThemeToggle />
+              {/*  Divider */}
+              <hr className="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
+              <UserMenu align="right" />
             </div>
           </div>
         </div>
