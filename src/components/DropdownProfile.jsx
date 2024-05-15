@@ -155,7 +155,7 @@ function DropdownProfile({ align }) {
           onFocus={() => setDropdownOpen(true)}
           onBlur={() => setDropdownOpen(false)}
         >
-          <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200 dark:border-slate-700">
+          {/* <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200 dark:border-slate-700">
             <div className="font-medium text-slate-800 dark:text-slate-100">
               اصغر
             </div>
@@ -165,7 +165,7 @@ function DropdownProfile({ align }) {
                 <option key={option.name}>{option.name}</option>
               ))}
             </select>
-          </div>
+          </div> */}
           <ul>
             <li>
               <Link

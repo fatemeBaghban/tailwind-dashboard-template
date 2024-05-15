@@ -19,71 +19,79 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const menu = [
     {
       name: "بازاریابی",
-      link: 'marketing',
+      link: "marketing",
       child: [
         {
-          name: "پیامک", link: "sms", child: [
+          name: "پیامک",
+          link: "sms",
+          child: [
             { name: "ساخت منبع شماره", link: "createnumber", child: [] },
             { name: "ارسال پیامک", link: "send", child: [] },
-          ]
+          ],
         },
         {
-          name: "تلگرام", link: "telegram", child: [
+          name: "تلگرام",
+          link: "telegram",
+          child: [
             {
-              name: "ربات", link: "bot", child: [
+              name: "ربات",
+              link: "bot",
+              child: [
                 { name: "کانال های عضو", link: "chanale", child: [] },
                 { name: "اعضا", link: "member", child: [] },
-              ]
+              ],
             },
             { name: "کانال ها", link: "chanel", child: [] },
-
-          ]
+          ],
         },
       ],
     },
     {
       name: "فراسهم",
-      link: 'farasahm',
+      link: "farasahm",
       child: [
         {
-          name: "ویسا", link: "visa", child: [
-
+          name: "ویسا",
+          link: "visa",
+          child: [
             { name: "سهامداران", link: "stockholder", child: [] },
             {
-              name: "معاملات", link: "trade", child: [
+              name: "معاملات",
+              link: "trade",
+              child: [
                 { name: "تی بی اس", link: "tbs", child: [] },
                 {
-                  name: "کارگزاری", link: "tbs", child: [
+                  name: "کارگزاری",
+                  link: "tbs",
+                  child: [
                     {
-                      name: "سطح 3", link: "ll3", child: [
-                        { name: "سطح 4", link: "ll4", child: [] },
-
-                      ]
+                      name: "سطح 3",
+                      link: "ll3",
+                      child: [{ name: "سطح 4", link: "ll4", child: [] }],
                     },
-
-                  ]
+                  ],
                 },
-              ]
+              ],
             },
-
-          ]
+          ],
         },
         {
-          name: "بازگام", link: "bazargam", child: [
-
+          name: "بازگام",
+          link: "bazargam",
+          child: [
             { name: "سهامداران", link: "stockholder", child: [] },
             {
-              name: "معاملات", link: "trade", child: [
+              name: "معاملات",
+              link: "trade",
+              child: [
                 { name: "تی بی اس", link: "tbs", child: [] },
                 { name: "کارگزاری", link: "tbs", child: [] },
-              ]
+              ],
             },
-
-          ]
+          ],
         },
       ],
     },
-
   ];
 
   // close on click outside
@@ -121,13 +129,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     }
   }, [sidebarExpanded]);
 
-
   return (
     <div>
       {/* Sidebar backdrop (mobile only) */}
       <div
-        className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+        className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
+          sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
         aria-hidden="true"
       ></div>
 
@@ -135,8 +143,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col absolute z-40 start-0 top-0 lg:static lg:start-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-slate-800 p-4 transition-all duration-200 ease-in-out ${sidebarOpen ? "translate-x-0 flex" : "-translate-x-96 hidden lg:flex"
-          }`}
+        className={`flex flex-col absolute z-40 start-0 top-0 lg:static lg:start-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-slate-800 p-4 transition-all duration-200 ease-in-out ${
+          sidebarOpen ? "translate-x-0 flex" : "-translate-x-96 hidden lg:flex"
+        }`}
       >
         {/* Sidebar header */}
         <div className="flex justify-between mb-10 pr-3 sm:px-2">
@@ -158,7 +167,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             </svg>
           </button>
           {/* Logo */}
-          <NavLink end to="/" className="block">
+          <NavLink end to="/" className="flex w-full justify-between">
             <svg width="32" height="32" viewBox="0 0 32 32">
               <defs>
                 <linearGradient
@@ -196,9 +205,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 fill="url(#logo-b)"
               />
             </svg>
+            <h3 className="content-center text-lg font-semibold pe-2 lg:hidden lg:sidebar-expanded:block">
+              اصغر
+            </h3>
           </NavLink>
         </div>
-
 
         {/* Links */}
         <div className="space-y-8">
@@ -215,79 +226,121 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 صفحات
               </span>
             </h3>
-            <ul className="mt-3">
-
+            <ul className="mt-3 lg:hidden lg:sidebar-expanded:block">
               {/* map menu */}
-              {
-                menu.map(i => {
-                  return (
-                    <SidebarHandler key={i.link} name={i.name} link={i.link} child={i.child}>
-                      {
-                        i.child.length > 0 ?
-                          i.child.map(j => {
+              {menu.map((i) => {
+                return (
+                  <SidebarHandler
+                    key={i.link}
+                    name={i.name}
+                    link={i.link}
+                    child={i.child}
+                  >
+                    <div className="inset-1  transition-all duration-[600ms] ">
+                      {i.child.length > 0
+                        ? i.child.map((j) => {
                             return (
-                              <SidebarHandler key={j.link} name={j.name} link={j.link} child={j.child}>
-                                {
-                                  j.child.length > 0 ?
-                                    j.child.map(k => {
-                                      return (
-                                        <SidebarHandler key={k.link} name={k.name} link={k.link} child={k.child}>
-                                          {
-                                            k.child.length > 0 ?
-                                              k.child.map(y => {
-                                                return (
-                                                  <SidebarHandler key={y.link} name={y.name} link={y.link} child={y.child}>
-                                                    {
-                                                      y.child.length > 0 ?
-                                                        y.child.map(o => {
-                                                          return (
-                                                            <SidebarHandler key={o.link} name={o.name} link={o.link} child={o.child}>
-                                                              {
-                                                                o.child.length > 0 ?
-                                                                  o.child.map(z => {
-                                                                    return (
-
-                                                                      <SidebarHandler key={z.link} name={z.name} link={z.link} child={z.child}>
-                                                                      </SidebarHandler>
-
-                                                                    )
-                                                                  })
-                                                                  : null
-                                                              }
-                                                            </SidebarHandler>
-                                                          )
-                                                        })
-                                                        : null
-                                                    }
-                                                  </SidebarHandler>
-                                                )
-                                              })
-                                              : null
-                                          }
-                                        </SidebarHandler>
-                                      )
-                                    })
-                                    : null
-                                }
+                              <SidebarHandler
+                                key={j.link}
+                                name={j.name}
+                                link={j.link}
+                                child={j.child}
+                              >
+                                <div className=" indent-3 ">
+                                  {j.child.length > 0
+                                    ? j.child.map((k) => {
+                                        return (
+                                          <SidebarHandler
+                                            key={k.link}
+                                            name={k.name}
+                                            link={k.link}
+                                            child={k.child}
+                                          >
+                                            <div className=" indent-5 ">
+                                              {k.child.length > 0
+                                                ? k.child.map((y) => {
+                                                    return (
+                                                      <SidebarHandler
+                                                        key={y.link}
+                                                        name={y.name}
+                                                        link={y.link}
+                                                        child={y.child}
+                                                      >
+                                                        <div className="indent-7">
+                                                          {y.child.length > 0
+                                                            ? y.child.map(
+                                                                (o) => {
+                                                                  return (
+                                                                    <SidebarHandler
+                                                                      key={
+                                                                        o.link
+                                                                      }
+                                                                      name={
+                                                                        o.name
+                                                                      }
+                                                                      link={
+                                                                        o.link
+                                                                      }
+                                                                      child={
+                                                                        o.child
+                                                                      }
+                                                                    >
+                                                                      <div className="indent-9">
+                                                                        {o.child
+                                                                          .length >
+                                                                        0
+                                                                          ? o.child.map(
+                                                                              (
+                                                                                z
+                                                                              ) => {
+                                                                                return (
+                                                                                  <div className="indent-12">
+                                                                                    <SidebarHandler
+                                                                                      key={
+                                                                                        z.link
+                                                                                      }
+                                                                                      name={
+                                                                                        z.name
+                                                                                      }
+                                                                                      link={
+                                                                                        z.link
+                                                                                      }
+                                                                                      child={
+                                                                                        z.child
+                                                                                      }
+                                                                                    ></SidebarHandler>
+                                                                                  </div>
+                                                                                );
+                                                                              }
+                                                                            )
+                                                                          : null}
+                                                                      </div>
+                                                                    </SidebarHandler>
+                                                                  );
+                                                                }
+                                                              )
+                                                            : null}
+                                                        </div>
+                                                      </SidebarHandler>
+                                                    );
+                                                  })
+                                                : null}
+                                            </div>
+                                          </SidebarHandler>
+                                        );
+                                      })
+                                    : null}
+                                </div>
                               </SidebarHandler>
-                            )
+                            );
                           })
-                          : null
-                      }
-                    </SidebarHandler>
-                  )
-                })
-              }
-
-
-
-
-
-
-
+                        : null}
+                    </div>
+                  </SidebarHandler>
+                );
+              })}
             </ul>
           </div>
-
         </div>
 
         {/* Expand / collapse button */}
