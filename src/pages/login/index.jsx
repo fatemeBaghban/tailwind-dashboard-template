@@ -15,21 +15,13 @@ const Login = () => {
   // const fetcher = (url) => fetch(url).then((res) => res.json());
   const router = useNavigate();
 
+
   const fetcher = (url) =>
     axios.get(url).then((response) => {
-      response.data;
+      return response.data;
     });
-
-  const { data, error, isLoading } = useSWR(`${onRun}/captcha`, fetcher);
-
-  console.log("dataaa", data);
-  // `/?phone=${phone}&password=${password}`,
-  // fetcher(`${onRun}/getcaptcha`)
-
-  // useEffect(getcaptcha, []);
-  // const getCaptcha = () => {
-  //   axios.get(``);
-  // };
+  
+  const { data:captch_data, error, isLoading } = useSWR(`${onRun}/captcha/`, fetcher);
 
   const handleSubmit = () => {
     router("/");
@@ -126,10 +118,10 @@ const Login = () => {
                         className="w-full h-20 p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
                       />
                     ) : null} */}
-                    {imageCaptcha ? (
+                    {captch_data ? (
                       <img
                         onClick={(e) => console.log("lklkl", e)}
-                        src={`data:image/png;base64,${data.image}`}
+                        src={`data:image/png;base64,${captch_data.image}`}
                         className="w-full text-sm focus:outline-none border border-gray-200 rounded text-gray-600"
                         type="text"
                         placeholder="کد کپچا"
