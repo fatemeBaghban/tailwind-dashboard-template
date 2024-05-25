@@ -1,24 +1,30 @@
 // import Stepper from "../../components/stepper";
 
 import { useState } from "react";
-import Stepper from "../../components/stepper";
+import Stepper from "../../../components/stepper";
+import Sidebar from "../../../partials/Sidebar";
+
 
 const steps = [
   {
-    label: "Address",
+    label: "شرکت",
     step: 1,
   },
   {
-    label: "Shipping",
+    label: "نقش",
     step: 2,
   },
   {
-    label: "Payment",
+    label: "ادرس",
     step: 3,
   },
   {
-    label: "Summary",
+    label: "موقعیت",
     step: 4,
+  },
+  {
+    label: "Summary",
+    step: 5,
   },
 ];
 
@@ -60,19 +66,25 @@ const CustomersFilter = () => {
   //   setActiveStep((prevStep) => Math.max(prevStep - 1, 0));
   // };
 
-  const steps = [1, 2, 3, 4, 5];
-  const activeStep = 2; // adjust this to the current active step
+  // const steps = [1, 2, 3, 4, 5];
+  const activeStep = steps[2].step; // adjust this to the current active step
+  // const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <ol className="flex items-center w-full text-xs text-gray-900 font-medium sm:text-base">
-      {steps.map((step, index) => (
-        <Stepper
-          key={index}
-          step={step}
-          active={index + 1 === activeStep}
-          completed={index + 1 < activeStep}
-        />
-      ))}
-    </ol>
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+      <ol className="flex items-center w-full text-xs text-gray-900 font-medium sm:text-base">
+        {steps.map((step) => (
+          <Stepper
+            key={step.step}
+            step={step.label}
+            active={step.step + 1 === activeStep}
+            completed={step.step + 1 < activeStep}
+          />
+        ))}
+      </ol>
+    </div>
 
     // <ol class="flex items-center w-full text-xs text-gray-900 font-medium sm:text-base">
     //   <li class="flex w-full relative text-indigo-600  after:content-['']  after:w-full after:h-0.5  after:bg-indigo-600 after:inline-block after:absolute lg:after:top-5 after:top-3 after:start-4">

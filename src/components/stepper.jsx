@@ -15,17 +15,17 @@ const Stepper = ({ step, active, completed }) => {
   const borderColor = active ? "border-indigo-600" : "border-gray-200";
   return (
     <li
-      className={`flex w-full relative after:content-['']  after:w-full after:h-0.5  after:bg-indigo-600 after:inline-block after:absolute lg:after:top-5 after:top-3 after:start-4 ${stepClass}`}
+      // className={`flex w-full relative after:content-['']  after:w-full after:h-0.5  after:bg-indigo-600 after:inline-block after:absolute lg:after:top-5 after:top-3 after:start-4 ${stepClass}`}
     >
       <div className="block whitespace-nowrap z-10">
         <span
-          className={`w-6 h-6 ${circleClass} border-2 ${borderColor} rounded-full flex justify-center items-center mx-auto mb-3 text-sm ${
+          className={`w-8 h-8 ${circleClass} border-2 ${borderColor} rounded-full flex justify-center items-center mx-auto mb-3 text-sm ${
             active ? "text-white" : "text-indigo-600"
-          } lg:w-10 lg:h-10`}
+          } lg:w-16 lg:h-16 lg:mx-5`}
         >
           {step}
         </span>{" "}
-        Step {step}
+        مرحله {step}
       </div>
       {completed && (
         <div className="absolute after:content-[''] after:w-full after:h-0.5 after:bg-gray-200 after:inline-block after:absolute lg:after:top-5 after:top-3 after:start-4" />

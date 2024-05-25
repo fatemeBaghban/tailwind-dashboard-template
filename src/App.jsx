@@ -8,6 +8,8 @@ import "./charts/ChartjsConfig";
 // Import pages
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/login";
+import SendSMS from "./pages/marketing/sms/sedsms";
+import CustomersFilter from "./pages/marketing/sms/customerFilter";
 
 function App() {
   const location = useLocation();
@@ -22,7 +24,10 @@ function App() {
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route exact path="/" element={<Dashboard />} />
+        <Route exact path="/" element={<Dashboard />}>
+          <Route path="/send" element={<SendSMS />} />
+          <Route path="createnumber" element={<CustomersFilter/>} />{" "}
+        </Route>
       </Routes>
     </>
   );

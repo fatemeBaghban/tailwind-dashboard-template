@@ -18,22 +18,24 @@ import DashboardCard10 from "../partials/dashboard/DashboardCard10";
 import DashboardCard11 from "../partials/dashboard/DashboardCard11";
 import DashboardCard12 from "../partials/dashboard/DashboardCard12";
 import DashboardCard13 from "../partials/dashboard/DashboardCard13";
-import CustomersFilter from "./marketing/customerFilter";
+import CustomersFilter from "./marketing/sms/customerFilter";
+import SendSMS from "./marketing/sms/sedsms";
+import { Outlet } from "react-router-dom";
 
 function Dashboard() {
   const steps = [
     {
-      title: 'Step 1',
-      content: 'This is the content for step 1.'
+      title: "Step 1",
+      content: "This is the content for step 1.",
     },
     {
-      title: 'Step 2',
-      content: 'This is the content for step 2.'
+      title: "Step 2",
+      content: "This is the content for step 2.",
     },
     {
-      title: 'Step 3',
-      content: 'This is the content for step 3.'
-    }
+      title: "Step 3",
+      content: "This is the content for step 3.",
+    },
   ];
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -77,7 +79,11 @@ function Dashboard() {
             </div>
 
             {/* Cards */}
-            <div className="grid grid-cols-12 gap-6">
+            <div className="bg-white dark:bg-slate-800 w-full p-8 h-fit flex justify-center content-center items-center rounded-lg shadow-lg">
+              {" "}
+              <Outlet />
+            </div>
+            <div className="grid grid-cols-12 pt-20 gap-6">
               {/* modal auth  */}
               {/* <Dialog
                 size="xs"
@@ -139,9 +145,12 @@ function Dashboard() {
               {/* Card (Income/Expenses) */}
               <DashboardCard13 />
             </div>
-            <div className="p-8">
+            {/* <div className="p-8">
               <CustomersFilter steps={steps} />
             </div>
+            <div className=" flex flex-col">
+              <SendSMS />
+            </div> */}
           </div>
         </main>
 

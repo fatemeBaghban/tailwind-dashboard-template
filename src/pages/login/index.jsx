@@ -1,23 +1,37 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
+import { getcaptcha } from "../../service/api/login";
+import { onRun } from "../../service/confing";
 
 const Login = () => {
   const [phone, setPhone] = useState();
   const [captcha, setCaptcha] = useState();
-  const [imageCaptcha, setImageCaptcha] = useState();
+  const [imageCaptcha, setImageCaptcha] = useState(null);
+  const [encryptedResponse, setEncryptedResponse] = useState(null);
   const [password, setPassword] = useState();
   const [step, setStep] = useState(1);
-  const fetcher = (url) => fetch(url).then((res) => res.json());
+  // const fetcher = (url) => fetch(url).then((res) => res.json());
   const router = useNavigate();
 
-  const { data, error, isLoading } = useSWR(
-    `/?phone=${phone}&password=${password}`,
-    fetcher
-  );
+  const fetcher = (url) =>
+    axios.get(url).then((response) => {
+      response.data;
+    });
+
+  const { data, error, isLoading } = useSWR(`${onRun}/captcha`, fetcher);
+
+  console.log("dataaa", data);
+  // `/?phone=${phone}&password=${password}`,
+  // fetcher(`${onRun}/getcaptcha`)
+
+  // useEffect(getcaptcha, []);
+  // const getCaptcha = () => {
+  //   axios.get(``);
+  // };
 
   const handleSubmit = () => {
-    console.log("kkkjk");
     router("/");
     // if (step == 1) {
     //   axios
@@ -45,9 +59,9 @@ const Login = () => {
     //     });
     // }
   };
-  if (isLoading) {
-    return <div>is Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>is Loading...</div>;
+  // }
   // if(error){
   //   return <div>{error.message}</div>
   // }
@@ -86,7 +100,7 @@ const Login = () => {
                   />
                 </div>
               </div>
-              {!step === 1 ? (
+              {step === 1 ? (
                 <div>
                   <div className="flex items-center justify-between">
                     <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -102,17 +116,29 @@ const Login = () => {
                     </div> */}
                   </div>
                   <div>
-                    {imageCaptcha ? (
+                    {/* {imageCaptcha ? (
                       <img
                         alt="captcha"
                         onClick={handleCaptcha}
-                        src={`data:image/png;base64,${imageCaptcha}`}
-                        className="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
+                        height={100}
+                        width={150}
+                        src={`data:image/png;base64,${data.image}`}
+                        className="w-full h-20 p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
+                      />
+                    ) : null} */}
+                    {imageCaptcha ? (
+                      <img
+                        onClick={(e) => console.log("lklkl", e)}
+                        src={`data:image/png;base64,${data.image}`}
+                        className="w-full text-sm focus:outline-none border border-gray-200 rounded text-gray-600"
+                        type="text"
+                        placeholder="کد کپچا"
                       />
                     ) : null}
                   </div>
                   <div className="mt-2">
                     <input
+                      maxLength={6}
                       name="captcha"
                       type="text"
                       value={captcha}

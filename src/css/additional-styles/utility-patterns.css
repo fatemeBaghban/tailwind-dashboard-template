@@ -1,3 +1,12 @@
+@import "../../../fonts/fonts.css";
+
+* {
+    font-family: IranSansX !important;
+    user-select: none !important;
+    outline: none !important;
+    src: format("woff2") url("");
+  }
+
 /* Typography */
 .h1 {
     @apply text-4xl font-extrabold tracking-tighter;
