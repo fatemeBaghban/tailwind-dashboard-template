@@ -1,27 +1,17 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
-import { getcaptcha } from "../../service/api/login";
-import { onRun } from "../../service/confing";
-
+ import { fetcher_get } from "../../service/api";
 const Login = () => {
   const [phone, setPhone] = useState();
   const [captcha, setCaptcha] = useState();
-  const [imageCaptcha, setImageCaptcha] = useState(null);
-  const [encryptedResponse, setEncryptedResponse] = useState(null);
   const [password, setPassword] = useState();
   const [step, setStep] = useState(1);
-  // const fetcher = (url) => fetch(url).then((res) => res.json());
   const router = useNavigate();
 
 
-  const fetcher = (url) =>
-    axios.get(url).then((response) => {
-      return response.data;
-    });
-  
-  const { data:captch_data, error, isLoading } = useSWR(`${onRun}/captcha/`, fetcher);
+
+  const { data:data_captcha, error, isLoading:isLoading_captcha ,mutate:mutate_captcha } = useSWR(['/captcha/'], fetcher_get);
 
   const handleSubmit = () => {
     router("/");
@@ -118,10 +108,10 @@ const Login = () => {
                         className="w-full h-20 p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
                       />
                     ) : null} */}
-                    {captch_data ? (
+                    {data_captcha ? (
                       <img
-                        onClick={(e) => console.log("lklkl", e)}
-                        src={`data:image/png;base64,${captch_data.image}`}
+                        onClick={(e) => mutate_captcha()}
+                        src={`data:image/png;base64,${data_captcha.image}`}
                         className="w-full text-sm focus:outline-none border border-gray-200 rounded text-gray-600"
                         type="text"
                         placeholder="کد کپچا"
